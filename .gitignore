@@ -1,0 +1,9 @@
+.DS_Store
+.vim/
+node_modules
+.settings
+npm-debug.log
+.vscode
+build
+GopherGfx
+gophergfx
