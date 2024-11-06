@@ -65,18 +65,26 @@ export class SkeletonCharacter extends AnimatedCharacter
 			)
 		}
 
-		for (let i = 0; i < this.MESH_RESOLUTION; i++) {
-			for (let j = 0; j < 2; j++) {
-				const tl = i * 2 + j;
-				const tr = tl + 1;
-				const bl = tl + 2;
-				const br = bl + 1;
+		for (let i = 0; i < this.MESH_RESOLUTION - 1; i++) {
+			const tl = i * 2;
+			const tr = tl + 1;
+			const bl = tl + 2;
+			const br = bl + 1;
 
-				idx.push(tl, bl, tr);
-				idx.push(tr, bl, br);
-			}
+			idx.push(tl, bl, tr);
+			idx.push(tr, bl, br);
 		}
+
+		// connect last vetices with first
+		const tl = (this.MESH_RESOLUTION - 1) * 2;
+		const tr = tl + 1;
+		const bl = 0;
+		const br = 1;
+
+		idx.push(tl, bl, tr);
+		idx.push(tr, bl, br);
 		
+
 		mesh.setVertices(vert)
 		mesh.setIndices(idx)
 		mesh.setNormals(normals)
